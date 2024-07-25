@@ -1,83 +1,54 @@
-import React, { useEffect, useState } from 'react'
-// import s from './RegPageIndex.module.scss'
-import AuthButton from '../../components/AuthButton/AuthButton'
-import Button from '../../components/Button/Button'
-import RegPrivat from './Form/RegPrivat'
+import React, { useState } from 'react'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 
-const ReportPage: React.FC = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0 })
-  }, [])
+export default function ReportPage() {
+  const [number, setNumber] = useState('')
+  const [file, setFile] = useState<File | null>(null)
+  const [text, setText] = useState('')
 
-  const [action, setAction] = useState('Фізична особа')
+  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNumber(e.target.value)
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0])
+    }
+  }
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value)
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // Обработка формы
+    console.log({ number, file, text })
+  }
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.pageTitle}>
-        <span className={s.titleLeft}>Головна</span>
-        <span className={s.titleDot}>&#183;</span>
-        <span className={s.titleRight}>Реєстрація</span>
-        <span className={s.actionHidden}>{action}</span>
-      </div>
-      <main className={s.main}>
-        <div className={s.mainGreetings}>
-          <div className={s.logoWrap}>{/* <LogoGreeting /> */}</div>
-          <p className={s.greetingsText}>Раді бачити Вас на нашій платформі!</p>
-        </div>
-        <div className={s.mainTitle}>
-          <h2>Зареєструватись</h2>
-        </div>
-
-        <div className={s.switchWrap}>
-          <div
-            className={action === 'Фізична особа' ? `${s.activeSwitch} ${s.blue}` : s.activeSwitch}
-            onClick={() => {
-              setAction('Фізична особа')
-            }}
-          >
-            Фізична особа
-          </div>
-          <div
-            className={action === 'Організація' ? `${s.activeSwitch} ${s.blue}` : s.activeSwitch}
-            onClick={() => {
-              setAction('Організація')
-            }}
-          >
-            Організація
-          </div>
-        </div>
-
-        <div className={s.mainForm}>
-          {action === 'Організація' ? <ReportPage /> : <RegPrivat />}
-        </div>
-
-        <div className={s.loginAlt}>
-          <div className={s.loginAlternative}>
-            <span className={s.loginAlernatLine}></span>
-            <span>або зареєструйтесь за допомогою</span>
-            <span className={s.loginAlernatLine}></span>
-          </div>
-        </div>
-
-        <div className={s.signinLink}>
-          <div className={s.isProfile}>Маєте профіль?</div>
-          <div className={s.btnWrap}>
-            <Button
-              component="link"
-              type="button"
-              buttonClasses={'link'}
-              to={''}
-              name="Увійти"
-              onClick={() => (window.location.href = '/login')}
-              handleMouseEnter={() => {}}
-              handleMouseLeave={() => {}}
-              styleBtn={{ width: '100%' }}
-            />
-          </div>
-        </div>
-      </main>
-    </div>
+    <Container fluid className="d-flex align-items-center justify-content-center vh-100">
+      <Row>
+        <Col>
+          <Form onSubmit={handleSubmit} style={{ width: '280px', margin: '0 auto' }}>
+            <Form.Group controlId="formNumber" className="mb-3">
+              <Form.Label>Number</Form.Label>
+              <Form.Control type="number" value={number} onChange={handleNumberChange} />
+            </Form.Group>
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Upload File</Form.Label>
+              <Form.Control type="file" onChange={handleFileChange} />
+            </Form.Group>
+            <Form.Group controlId="formText" className="mb-3">
+              <Form.Label>Text</Form.Label>
+              <Form.Control as="textarea" rows={3} value={text} onChange={handleTextChange} />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="w-100">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   )
 }
-
-export default ReportPage

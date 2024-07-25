@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
     <>
       {/* <div className="w-100" style={{ position: 'relative' }}> */}
       {/* <Container fluid style={{ backgroundColor: 'f2f5f7' }}> */}
-      {!isLogin ? <Home /> : <SignIn />}
+      {isLogin ? <Home /> : <SignIn />}
       {/* </Container> */}
       {/* </div> */}
     </>

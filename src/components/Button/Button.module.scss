@@ -1,0 +1,322 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  cursor: pointer;
+  transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+}
+
+.button:hover {
+  transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+}
+
+.buttonIcon {
+  @include desktop {
+    position: relative;
+    top: 3px;
+  }
+}
+
+.button.filledBtn {
+  cursor: pointer;
+  height: 56px;
+  display: flex;
+  padding: 16px 30px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: $button-primary-bg;
+  font-family: $body-font-family;
+  color: $color-content-text;
+  font-weight: 500;
+  font-size: 20px;
+  vertical-align: middle;
+
+  @include tablet {
+    font-size: 16px;
+  }
+
+  @include desktop {
+    font-size: 20px;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+    background: $button-primary-bg-hover;
+  }
+
+  &:active {
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+    background: $yellow;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $color-bg-alt;
+    color: $color-text-faded;
+  }
+  &.fullСoverage {
+    @media (max-width: $mobile-max-width) {
+      width: 100%;
+    }
+  }
+}
+
+.outlineBtn {
+  cursor: pointer;
+  height: 56px;
+  display: inline-flex;
+  border-radius: 8px;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 2px solid $yellow;
+  color: $yellow;
+  font-weight: 500;
+  font-size: 20px;
+
+  &:hover {
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+    background: $button-secondary-bg-hover;
+  }
+
+  &:active {
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+    background: $yellow;
+    color: $color-content-text;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $color-bg-alt;
+    color: $color-text-faded;
+  }
+
+  &.header_tablet {
+    padding: 16px 29px;
+    @media (max-width: 1439px) {
+      height: 48px;
+      background-color: transparent;
+      text-decoration: none;
+
+      font-size: $fs-s;
+    }
+  }
+  &.fullСoverage {
+    @media (max-width: $mobile-max-width) {
+      width: 100%;
+    }
+  }
+}
+
+// .outlineIconLike {
+//   cursor: pointer;
+//   border: 2px solid $blue;
+//   border-radius: 8px;
+//   padding: 16px 24px;
+//   display: flex;
+//   flex-direction: row;
+//   color: $blue;
+//   font-weight: 400;
+//   font-size: 16px;
+//   line-height: 150%;
+
+//   &:hover {
+//     box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+//     background: rgba(0, 65, 161, 0.1);
+//   }
+//   &:active {
+//     color: $button-secondary-bg-active;
+//     box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+//     background: $blue;
+//   }
+
+//   &:disabled {
+//     cursor: not-allowed;
+//     border: 2px solid $color-text-faded;
+//     color: $color-text-faded;
+//   }
+// }
+
+.editBtn {
+  cursor: pointer;
+  height: 24px;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $color-content-text;
+  color: $color-content-text;
+  font-family: $body-font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+
+  &:hover {
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+  }
+
+  &:active {
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $color-bg-alt;
+    color: $color-text-faded;
+  }
+
+  &.header_tablet {
+    padding: 16px 29px;
+    @media (max-width: 1439px) {
+      height: 48px;
+      background-color: transparent;
+      text-decoration: none;
+
+      font-size: $fs-s;
+    }
+  }
+  &.fullСoverage {
+    @media (max-width: $mobile-max-width) {
+      width: 100%;
+    }
+  }
+}
+
+.outlineIconLike {
+  @include flex;
+  gap: 8px;
+  padding: 8px 16px;
+
+  border-radius: 8px;
+  border: 2px solid $blue;
+
+  color: $blue;
+  background-color: $white;
+
+  cursor: pointer;
+
+  font-family: $body-font-family;
+  font-weight: $font-regular;
+  font-size: $fs-s;
+  line-height: $text-line-height;
+  @media (max-width: $tablet-max-width) {
+    width: 75px;
+    height: 40px;
+    padding: 4px 8px;
+  }
+  &_project {
+    width: 91px;
+    height: 56px;
+  }
+  &_mobile {
+    @media (max-width: $mobile-max-width) {
+      width: 100%;
+      height: 56px;
+      padding: 16px 24px;
+    }
+  }
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgba($color: $blue, $alpha: 0.1);
+    }
+  }
+
+  &:active {
+    background-color: $blue;
+    color: $button-secondary-bg-active;
+  }
+  &:active svg path {
+    fill: $button-secondary-bg-active;
+    stroke: $button-secondary-bg-active;
+  }
+  &:disabled {
+    border: 2px solid $button-secondary-bg-hover;
+    color: $button-secondary-bg-hover;
+  }
+  &:disabled svg path {
+    fill: 2px solid $button-secondary-bg-hover;
+    stroke: $button-secondary-bg-hover;
+  }
+}
+
+.heroNavGrid {
+  cursor: pointer;
+  height: 40px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  color: $black;
+  font-weight: 400;
+  line-height: 157%;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+
+  @include tablet {
+    height: 46px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+  @include desktop {
+    font-size: 20px;
+    letter-spacing: normal;
+  }
+
+  &:hover {
+    border: 2px solid $blue;
+    color: $blue;
+  }
+  &:active {
+    color: $button-secondary-bg-active;
+    box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.3);
+    background: $blue;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 2px solid $color-text-faded;
+    color: $color-text-faded;
+  }
+}
+
+.link {
+  border: none;
+  border-bottom: 1px solid $blue;
+  font-family: $body-font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $blue;
+  // width: 100%;
+  height: 24px;
+  cursor: pointer;
+
+  @include desktop {
+    font-size: 20px;
+    height: 30px;
+  }
+
+  &:hover {
+    border-bottom: 1px solid #001a40;
+    color: #001a40;
+  }
+
+  // &:active {
+  //   border: 2px solid $blue;
+  //   color: $blue;
+  // }
+
+  &:disabled {
+    cursor: not-allowed;
+    border-bottom: 1px solid $color-text-faded;
+    color: $color-text-faded;
+  }
+}

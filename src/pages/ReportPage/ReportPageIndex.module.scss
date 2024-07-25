@@ -1,0 +1,299 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageTitle {
+  display: flex;
+  gap: 8px;
+  width: 288px;
+  height: 24px;
+  margin: 16px auto 40px auto;
+
+  font-family: $body-font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $color-content-text;
+
+  @include tablet {
+    font-size: 14px;
+    width: 680px;
+    margin: 24px auto 32px auto;
+  }
+
+  @include desktop {
+    font-size: 16px;
+    width: 1200px;
+    margin: 24px auto 64px auto;
+  }
+}
+
+.titleDot {
+  position: relative;
+  scale: 3;
+  top: 0.2em;
+}
+
+.titleRight {
+  color: $color-text-faded;
+}
+
+.actionHidden {
+  visibility: hidden;
+}
+
+.main {
+  width: 288px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+
+  @include tablet {
+    width: 447px;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  @include desktop {
+    width: 588px;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+}
+
+.mainGreetings {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+
+  @include tablet {
+    gap: 32px;
+  }
+
+  @include desktop {
+    gap: 16px;
+  }
+
+  .greetingsText {
+    font-family: $heading-font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: $color-content-text;
+
+    @include tablet {
+      font-size: 20px;
+    }
+  }
+}
+
+.logoWrap {
+  background-image: url(../../assets/icons/regpage/logo-greeting.svg);
+  background-size: contain;
+  width: 64px;
+  height: 64px;
+
+  @include tablet {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+.mainTitle {
+  padding: 10px;
+  height: 51px;
+  font-family: $heading-font-family;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  color: $color-content-text;
+
+  @include desktop {
+    font-size: 24px;
+  }
+}
+
+.switchWrap {
+  display: flex;
+  width: 288px;
+  height: 44px;
+
+  border: 2px solid $blue;
+  border-radius: 5px;
+  background: transparent;
+
+  font-family: $body-font-family;
+  font-weight: 500;
+  font-size: 16px;
+  color: $button-secondary-bg-active;
+
+  @include tablet {
+    width: 448px;
+    height: 40px;
+  }
+
+  @include desktop {
+    font-size: 20px;
+    width: 588px;
+    height: 48px;
+  }
+}
+
+.activeSwitch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  width: 294px;
+  background: $blue;
+  cursor: pointer;
+
+  &:hover {
+    background: #033068;
+  }
+}
+
+.blue {
+  background: transparent;
+  color: $blue;
+  cursor: unset;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+.mainForm {
+  width: 100%;
+}
+
+.loginAlt {
+  width: 288px;
+  height: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  @include tablet {
+    width: 447px;
+    height: 96px;
+  }
+
+  @include desktop {
+    width: 588px;
+    height: 94px;
+  }
+}
+
+.loginAlternative {
+  width: 100%;
+  height: 14px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  font-family: $body-font-family;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+  color: $color-text-faded;
+
+  @include tablet {
+    width: 564px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  @include desktop {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+  }
+}
+
+.loginAlernatLine {
+  border: 1px solid $color-text-faded;
+  width: 33px;
+  height: 0px;
+
+  @include tablet {
+    width: 134px;
+  }
+
+  @include desktop {
+    width: 107px;
+  }
+}
+
+.loginAlternatBtnBox {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  @include tablet {
+    gap: 24px;
+  }
+}
+
+.loginAuthFacebookIcon {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+
+  @include desktop {
+    width: 1.4375rem;
+    height: 1.4375rem;
+  }
+}
+
+.signinLink {
+  display: flex;
+  gap: 8px;
+
+  font-family: $body-font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $color-content-text;
+
+  @include tablet {
+    gap: 16px;
+  }
+
+  @include tablet {
+    font-size: 20px;
+  }
+}
+
+.btnWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 24px;
+  font-size: 16px;
+  box-sizing: border-box;
+
+  @include tablet {
+    gap: 16px;
+  }
+
+  @include tablet {
+    width: 82px;
+    height: 30px;
+  }
+}

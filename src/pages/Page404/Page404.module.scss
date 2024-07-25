@@ -1,0 +1,109 @@
+@import "../../styles/styles.scss";
+
+.section {
+  width: $desktop-min-width;
+  background-color: $white;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 64px 120px;
+
+  @media (max-width: $tablet-max-width) {
+    padding: 48px 32px;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    padding: 40px 16px;
+  }
+}
+
+.title {
+  color: $black;
+  font-family: $heading-font-family;
+  font-size: $fs-xxl;
+  font-weight: $font-bold;
+  line-height: $heading-line-height;
+  margin-bottom: 40px;
+  @media (max-width: $tablet-max-width) {
+    font-size: $fs-xl;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    font-size: $fs-l-mob;
+    margin-bottom: 24px;
+  }
+
+  span {
+    display: inline-block;
+
+    @media (max-width: $tablet-max-width) {
+      &:first-child {
+        display: block;
+      }
+    }
+  }
+}
+
+.subtitle {
+  color: $black;
+  font-family: $heading-font-family;
+  font-size: $fs-l-mob;
+  font-weight: $font-bold;
+  line-height: $heading-line-height;
+  margin-bottom: 40px;
+  @media (max-width: $tablet-max-width) {
+    font-size: $fs-s;
+    margin-bottom: 32px;
+  }
+  @media (max-width: $mobile-max-width) {
+    margin-bottom: 24px;
+  }
+}
+
+.errorWrapper {
+  margin-bottom: 40px;
+}
+
+.errorIcon {
+  @media (max-width: $tablet-max-width) {
+    width: 303px;
+  }
+  @media (max-width: $mobile-max-width) {
+    width: 226px;
+  }
+}
+
+.errorBtn {
+  padding: 16px 32px 16px 32px;
+  border-radius: 5px;
+  background: $button-primary-bg;
+  @media (max-width: $tablet-max-width) {
+    font-size: $fs-s;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    font-size: $fs-m;
+    padding: 16px 16px;
+  }
+}
+
+.link {
+  color: $black;
+  font-family: $body-font-family;
+  font-size: $fs-m;
+  font-weight: $font-medium;
+  line-height: 23px;
+  @media (max-width: $tablet-max-width) {
+    font-size: $fs-s;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    font-size: $fs-m;
+  }
+}

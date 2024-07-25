@@ -1,0 +1,49 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.group {
+  --text-color: $body-font-family;
+
+  pointer-events: none;
+  position: relative;
+
+  width: 100%;
+
+  font-family: $body-font-family;
+  color: $button-secondary-bg-active;
+
+  &[data-status='filled'] {
+    --text-color: $button-secondary-bg-active;
+  }
+
+  &:focus-within {
+    --text-color: $button-secondary-bg-active;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  pointer-events: auto;
+  flex-grow: 1;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 16px 8px;
+
+  font-family: $body-font-family;
+  font-weight: 400;
+  font-size: 10px;
+  color: $color-content-text;
+
+  border: none;
+  box-shadow: 0 4px 10px 0 rgba(104, 104, 104, 0.1);
+  background: $button-secondary-bg-active;
+  outline: none;
+
+  @include tablet {
+    font-size: 16px;
+  }
+  @include desktop {
+    font-size: 20px;
+  }
+}

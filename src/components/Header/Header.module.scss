@@ -1,0 +1,188 @@
+@import '../../styles/styles.scss';
+@import '../../styles/_mixins.scss';
+
+.header {
+  width: 100%;
+  height: auto;
+  position: relative;
+  @include flex($direction: column);
+  top: 0;
+
+  .headerGrad {
+    width: 100%;
+    height: auto;
+    top: 0;
+    @include flex;
+    background-image: $header-bg-grad;
+    @include box-shadow($color: rgba(0, 0, 0, 0.25));
+    z-index: 9001;
+    @media (max-width: $mobile-max-width) {
+      &.activeSection {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.section {
+  width: 1440px;
+  padding: 16px 120px;
+  z-index: 9002;
+
+  @media (max-width: 1439px) {
+    width: 744px;
+    height: 88px;
+    padding: 16px 32px;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    padding: 8px 16px;
+    width: 320px;
+    height: 48px;
+  }
+}
+
+.container {
+  width: 100%;
+  @include flex($justify: space-between);
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+
+  @media (max-width: $mobile-max-width) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.buttonBlock {
+  @include flex;
+  width: 327px;
+  height: 56px;
+
+  @media (max-width: 1439px) {
+    @include flex;
+    width: 276px;
+    height: 48px;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    width: 120px;
+    height: 32px;
+  }
+}
+
+.createButton {
+  @include flex;
+  border: 2px solid $yellow;
+  border-radius: 8px;
+  padding: 16px 32px;
+  height: 56px;
+  background-color: transparent;
+  text-decoration: none;
+
+  font-family: $body-font-family;
+  font-weight: $font-medium;
+  font-size: $fs-m;
+  color: $yellow;
+
+  &:hover {
+    box-shadow: 0 4px 10px 0 $color-button-box-shadow;
+    background: rgba(247, 242, 237, 0.2);
+  }
+
+  &:active {
+    box-shadow: 0 4px 10px 0 $color-button-box-shadow;
+    background: $yellow;
+    color: $black;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $color-bg-alt;
+    color: $color-text-faded;
+  }
+
+  @media (max-width: 1439px) {
+    @include flex;
+    height: 48px;
+    background-color: transparent;
+    text-decoration: none;
+
+    font-size: $fs-s;
+  }
+
+  @media (max-width: $mobile-max-width) {
+    display: none;
+  }
+}
+
+.iconButtonBlock {
+  @include flex;
+}
+
+.iconButton {
+  margin-right: 16px;
+
+  @media (max-width: $mobile-max-width) {
+    margin-right: 12px;
+  }
+}
+
+.burgerMenu {
+  display: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  @media (max-width: $mobile-max-width) {
+    display: flex;
+  }
+}
+
+.choiceBlock {
+  position: absolute;
+  top: 48px;
+  padding: 16px 16px 32px 16px;
+  width: 100%;
+  height: 296px;
+  z-index: 9000;
+  display: none;
+  @include box-shadow($color: rgba(0, 0, 0, 0.25));
+  background: linear-gradient(180deg, #2268c0 0%, #67bbec 69.5%, #81d9ff 89%, #fff 100%);
+
+  transform: translateY(-100%);
+  opacity: 0;
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+
+  @media (max-width: $mobile-max-width) {
+    @include flex(column, flex-start);
+    .choice {
+      @include flex(column, flex-start);
+      width: 288px;
+      .choiceItem {
+        margin-bottom: 16px;
+        font-family: $body-font-family;
+        font-weight: $font-regular;
+        font-size: $fs-s;
+        line-height: $text-line-height;
+        color: $color-content-text;
+        border-bottom: 1px solid $color-content-text;
+        width: 100%;
+        text-align: start;
+      }
+    }
+    .createButton {
+      display: flex;
+      width: 288px;
+      height: 56px;
+    }
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

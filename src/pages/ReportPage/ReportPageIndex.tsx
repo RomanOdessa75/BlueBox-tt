@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 export default function ReportPage() {
   const [number, setNumber] = useState('')
   const [file, setFile] = useState<File | null>(null)
+  const [fileName, setFileName] = useState('')
   const [text, setText] = useState('')
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +14,10 @@ export default function ReportPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0])
+      setFileName(e.target.files[0].name)
+    } else {
+      setFile(null)
+      setFileName('')
     }
   }
 
@@ -22,7 +27,6 @@ export default function ReportPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Обработка формы
     console.log({ number, file, text })
   }
 
@@ -32,20 +36,67 @@ export default function ReportPage() {
         <Col>
           <Form onSubmit={handleSubmit} style={{ width: '280px', margin: '0 auto' }}>
             <Form.Group controlId="formNumber" className="mb-3">
-              <Form.Label>Number</Form.Label>
-              <Form.Control type="number" value={number} onChange={handleNumberChange} />
+              <Form.Label style={{ textAlign: 'left', width: '100%' }}>
+                Enter a value between 1 and 10
+              </Form.Label>
+              <Form.Control
+                size="sm"
+                type="number"
+                value={number}
+                onChange={handleNumberChange}
+                placeholder="Value"
+              />
             </Form.Group>
             <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>Upload File</Form.Label>
-              <Form.Control type="file" onChange={handleFileChange} />
+              <Form.Label className="text-start" style={{ textAlign: 'left', width: '100%' }}>
+                Attach a JPG image
+              </Form.Label>
+              <div className="d-flex align-items-center">
+                <Form.Control
+                  size="sm"
+                  type="text"
+                  placeholder="File..."
+                  className="w-100 me-0"
+                  value={fileName}
+                  readOnly
+                />
+                <Button
+                  size="sm"
+                  variant="outline-secondary"
+                  className="w-50"
+                  style={{
+                    borderColor: '#ced4da',
+                    color: '#495057',
+                    backgroundColor: 'white',
+                    position: 'relative'
+                  }}
+                  onClick={() => document.getElementById('file-upload')?.click()}
+                >
+                  Browse
+                </Button>
+                <Form.Control
+                  id="file-upload"
+                  size="sm"
+                  type="file"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+              </div>
             </Form.Group>
-            <Form.Group controlId="formText" className="mb-3">
-              <Form.Label>Text</Form.Label>
-              <Form.Control as="textarea" rows={3} value={text} onChange={handleTextChange} />
-            </Form.Group>
-            <Button variant="primary" type="submit" className="w-100">
-              Submit
+            <Button variant="primary" type="submit" className="w-60">
+              Generate Report
             </Button>
+          </Form>
+          <Form>
+            <Form.Group controlId="formText" className="mb-3" style={{ marginTop: '20px' }}>
+              <Form.Control
+                as="textarea"
+                rows={15}
+                value={text}
+                onChange={handleTextChange}
+                style={{ width: 'calc(100vw - 100px)', marginLeft: '50px', marginRight: '50px' }}
+              />
+            </Form.Group>
           </Form>
         </Col>
       </Row>

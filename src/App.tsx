@@ -9,7 +9,6 @@ import MainLayout from './components/Layout/MainLayout'
 import HomePage from './pages/HomePage/HomePage'
 import Page404 from './pages/Page404/Page404'
 import ReportPage from './pages/ReportPage/ReportPageIndex'
-// import Login from './pages/LoginPage/LiginIndex'
 
 // import AdminLayout from './components/Layout/AdminLayout/AdminLayout.tsx'
 // import ProtectedRoute from './routes/ProtectedRouteAdmin.tsx'

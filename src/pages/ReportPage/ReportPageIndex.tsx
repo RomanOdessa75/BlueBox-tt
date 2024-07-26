@@ -31,10 +31,28 @@ export default function ReportPage() {
   }
 
   return (
-    <Container fluid className="d-flex align-items-center justify-content-center vh-100">
+    // <Container fluid className="d-flex align-items-center justify-content-center vh-100">
+    <Container fluid className="vh-100 position-relative">
+      <Row className="d-none d-md-flex position-absolute top-0 mt-3 me-3">
+        <Col xs="auto">
+          <h1
+            style={{
+              fontSize: '20px',
+              marginTop: '10px',
+              marginRight: '15px'
+            }}
+          >
+            Report
+          </h1>
+        </Col>
+      </Row>
+
       <Row>
         <Col>
-          <Form onSubmit={handleSubmit} style={{ width: '280px', margin: '0 auto' }}>
+          <Form
+            onSubmit={handleSubmit}
+            style={{ width: '280px', margin: '0 auto', marginTop: '100px' }}
+          >
             <Form.Group controlId="formNumber" className="mb-3">
               <Form.Label style={{ textAlign: 'left', width: '100%' }}>
                 Enter a value between 1 and 10

@@ -93,3 +93,64 @@ function Home() {
 }
 
 export default Home
+
+//------------------------------------
+// import React, { useEffect, useState } from 'react'
+// import { Table, Container, Row, Col } from 'react-bootstrap'
+
+// interface Employee {
+//   id: number
+//   name: string
+//   salary: string
+//   country: string
+//   city: string
+// }
+
+// function Home() {
+//   const [employees, setEmployees] = useState<Employee[]>([])
+
+//   useEffect(() => {
+//     // Имитация вызова бэкенда
+//     const fetchEmployees = async () => {
+//       // Здесь может быть ваш вызов API, например fetch или axios
+//       const response = await fetch('/api/employees') // Замените URL на реальный эндпоинт
+//       const data: Employee[] = await response.json()
+//       setEmployees(data)
+//     }
+
+//     fetchEmployees()
+//   }, [])
+
+//   return (
+//     <Container fluid>
+//       <Row>
+//         <Col md="12">
+//           <Table className="table-hover table-striped">
+//             <thead>
+//               <tr>
+//                 <th className="border-0">ID</th>
+//                 <th className="border-0">Name</th>
+//                 <th className="border-0">Salary</th>
+//                 <th className="border-0">Country</th>
+//                 <th className="border-0">City</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {employees.map((employee) => (
+//                 <tr key={employee.id}>
+//                   <td>{employee.id}</td>
+//                   <td>{employee.name}</td>
+//                   <td>{employee.salary}</td>
+//                   <td>{employee.country}</td>
+//                   <td>{employee.city}</td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </Table>
+//         </Col>
+//       </Row>
+//     </Container>
+//   )
+// }
+
+// export default Home

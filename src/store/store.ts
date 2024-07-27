@@ -1,24 +1,39 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { combineReducers } from 'redux'
+import { authApi } from '../app/api/apiSlice'
+import authReducer from '../store/slice/authSlice'
 
-import filtersReducer from '../store/slice/filtersSlice'
-import { api } from '../app/api/apiSlice'
-
-const rootReducer = combineReducers({
-  //   auth: authReducer
-  filters: filtersReducer,
-  [api.reducerPath]: api.reducer
+export const store = configureStore({
+  reducer: {
+    [authApi.reducerPath]: authApi.reducer,
+    auth: authReducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware)
 })
 
-const store = configureStore({
-  reducer: rootReducer,
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
-  //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
-  devTools: true
-})
+// import { configureStore } from '@reduxjs/toolkit'
+// import { combineReducers } from 'redux'
 
-export default store
+// import filtersReducer from '../store/slice/filtersSlice'
+// import { api } from '../app/api/apiSlice'
 
-export type RootState = ReturnType<typeof rootReducer>
-export type AppStore = typeof store
-export type AppDispatch = AppStore['dispatch']
+// const rootReducer = combineReducers({
+//   //   auth: authReducer
+//   filters: filtersReducer,
+//   [api.reducerPath]: api.reducer
+// })
+
+// const store = configureStore({
+//   reducer: rootReducer,
+
+//   //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+//   devTools: true
+// })
+
+// export default store
+
+// export type RootState = ReturnType<typeof rootReducer>
+// export type AppStore = typeof store
+// export type AppDispatch = AppStore['dispatch']

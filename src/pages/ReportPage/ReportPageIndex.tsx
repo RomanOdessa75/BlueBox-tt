@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { useAppSelector } from '../../hooks/useAppDispatch'
+import { useNavigate } from 'react-router-dom'
 
 export default function ReportPage() {
   const [number, setNumber] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const [fileName, setFileName] = useState('')
   const [text, setText] = useState('')
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || ''
+  const isLogin = useAppSelector((state) => state.auth.isLogin)
+  const navigate = useNavigate()
+
+  if (!isLogin) {
+    navigate('/')
+  }
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNumber(e.target.value)
@@ -25,9 +34,50 @@ export default function ReportPage() {
     setText(e.target.value)
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const getFileDetails = (
+    file: File
+  ): Promise<{ name: string; size: number; type: string; data: string }> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        resolve({
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          data: reader.result?.toString().split(',')[1] || ''
+        })
+      }
+      reader.onerror = (error) => reject(error)
+      reader.readAsDataURL(file)
+    })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log({ number, file, text })
+    const formData: any = {
+      number_value: number,
+      jpgFILE: file ? await getFileDetails(file) : null
+    }
+
+    setText(JSON.stringify(formData, null, 2)) // Display JSON in text area
+
+    try {
+      const response = await fetch(`${baseUrl}/app/report`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include'
+      })
+      if (response.ok) {
+        console.log('Report submitted successfully')
+      } else {
+        console.error('Failed to submit report')
+      }
+    } catch (error) {
+      console.error('Error submitting report:', error)
+    }
   }
 
   return (

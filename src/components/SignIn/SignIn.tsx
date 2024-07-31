@@ -16,24 +16,6 @@ const SignIn = () => {
   const [login, { isLoading }] = useLoginMutation()
   const dispatch = useDispatch()
 
-  // const submitHandler = async (event: React.FormEvent) => {
-  //   event.preventDefault()
-  //   if (emailRef.current && passwordRef.current) {
-  //     const username = emailRef.current.value
-  //     const password = emailRef.current.value
-  //     try {
-  //       const result = await login({ username, password }).unwrap()
-  //       console.log('Login success:', result)
-  //       dispatch(setLogin({ user: result.user }))
-  //       console.log('username:', username)
-  //       console.log('password:', password)
-  //       navigate('/')
-  //     } catch (error) {
-  //       console.error('Login failed:', error)
-  //       setShowModal(true)
-  //     }
-  //   }
-  // }
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault()
     if (emailRef.current && passwordRef.current) {

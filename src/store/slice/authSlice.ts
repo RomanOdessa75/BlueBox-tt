@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-// interface UserState {
-//   isLogin: boolean
-//   user: {
-//     first_name: string
-//     last_name: string
-//     email: string | null
-//   }
-// }
 interface UserState {
   token: any
   isLogin: boolean
@@ -37,31 +29,3 @@ const authSlice = createSlice({
 
 export const { setLogin, setLogout } = authSlice.actions
 export default authSlice.reducer
-
-//----------------old-------------------------
-
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-// interface AuthState {
-//   token: string | null
-// }
-
-// const initialState: AuthState = {
-//   token: null
-// }
-
-// const authSlice = createSlice({
-//   name: 'auth',
-//   initialState,
-//   reducers: {
-//     setToken(state, action: PayloadAction<string>) {
-//       state.token = action.payload
-//     },
-//     clearToken(state) {
-//       state.token = null
-//     }
-//   }
-// })
-
-// export const { setToken, clearToken } = authSlice.actions
-// export default authSlice.reducer

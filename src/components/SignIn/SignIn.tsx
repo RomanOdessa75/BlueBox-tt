@@ -1,53 +1,37 @@
-// src/components/SignIn/SignIn.tsx
 import { useRef, useState } from 'react'
-import { Button, Col, Form, Row, Spinner } from 'react-bootstrap'
-// import { useLocation, useNavigate } from 'react-router-dom'
-// import api from '../../utils/api'
-import ErrorModal from '../ErrorModal/ErrorModal'
-// import { useAppDispatch } from '../../hooks/useAppDispatch'
-// import { setToken } from '../../features/auth/authSlice'
-import { useLoginMutation } from '../../store/slice/authApiSlice'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Button, Col, Form, Row, Spinner } from 'react-bootstrap'
+import ErrorModal from '../ErrorModal/ErrorModal'
+import { useLoginMutation } from '../../store/slice/authApiSlice'
+import { setLogin } from '../../store/slice/authSlice'
 
 const SignIn = () => {
-  // const baseUrl = 'https://devzone.blueboxonline.co.uk/api/v1' || ''
-
-  // const [loading, setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
 
   const navigate = useNavigate()
-  // const location = useLocation()
-
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
-  // const dispatch = useAppDispatch()
-  // const [loginMutation] = useLoginMutation()
   const [login, { isLoading }] = useLoginMutation()
+  const dispatch = useDispatch()
 
-  // const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault()
-  //   if (!emailRef.current?.value || !passwordRef.current?.value) return
-
-  //   try {
-  //     setLoading(true)
-  //     const response = await api.post(`${baseUrl}/users/login`, {
-  //       username: emailRef.current.value,
-  //       password: passwordRef.current.value
-  //     })
-
-  //     if (response.data.success) {
-  //       dispatch(setToken(response.data.token))
-  //       await api.get(`${baseUrl}/users/session`)
-  //       navigate(location.state?.path || '/', { replace: true })
-  //     } else {
+  // const submitHandler = async (event: React.FormEvent) => {
+  //   event.preventDefault()
+  //   if (emailRef.current && passwordRef.current) {
+  //     const username = emailRef.current.value
+  //     const password = emailRef.current.value
+  //     try {
+  //       const result = await login({ username, password }).unwrap()
+  //       console.log('Login success:', result)
+  //       dispatch(setLogin({ user: result.user }))
+  //       console.log('username:', username)
+  //       console.log('password:', password)
+  //       navigate('/')
+  //     } catch (error) {
+  //       console.error('Login failed:', error)
   //       setShowModal(true)
   //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //     setShowModal(true)
-  //   } finally {
-  //     setLoading(false)
   //   }
   // }
   const submitHandler = async (event: React.FormEvent) => {
@@ -59,9 +43,10 @@ const SignIn = () => {
         // await login({ username, password }).unwrap()
         const result = await login({ username, password }).unwrap()
         console.log('Login success:', result)
+        dispatch(setLogin({ user: result.user }))
         // Обработка успешного входа
         // if (result.ok) {
-        //   navigate('/')
+        navigate('/')
         // } else {
         //   setShowModal(true)
         // }
@@ -115,6 +100,125 @@ const SignIn = () => {
 }
 
 export default SignIn
+
+//---------------- prev -----------------------------------
+// src/components/SignIn/SignIn.tsx
+// import { useRef, useState } from 'react'
+// import { Button, Col, Form, Row, Spinner } from 'react-bootstrap'
+// // import { useLocation, useNavigate } from 'react-router-dom'
+// // import api from '../../utils/api'
+// import ErrorModal from '../ErrorModal/ErrorModal'
+// // import { useAppDispatch } from '../../hooks/useAppDispatch'
+// // import { setToken } from '../../features/auth/authSlice'
+// import { useLoginMutation } from '../../store/slice/authApiSlice'
+// import { useNavigate } from 'react-router-dom'
+
+// const SignIn = () => {
+//   // const baseUrl = 'https://devzone.blueboxonline.co.uk/api/v1' || ''
+
+//   // const [loading, setLoading] = useState(false)
+//   const [showModal, setShowModal] = useState(false)
+
+//   const navigate = useNavigate()
+//   // const location = useLocation()
+
+//   const emailRef = useRef<HTMLInputElement>(null)
+//   const passwordRef = useRef<HTMLInputElement>(null)
+
+//   // const dispatch = useAppDispatch()
+//   // const [loginMutation] = useLoginMutation()
+//   const [login, { isLoading }] = useLoginMutation()
+
+//   // const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+//   //   e.preventDefault()
+//   //   if (!emailRef.current?.value || !passwordRef.current?.value) return
+
+//   //   try {
+//   //     setLoading(true)
+//   //     const response = await api.post(`${baseUrl}/users/login`, {
+//   //       username: emailRef.current.value,
+//   //       password: passwordRef.current.value
+//   //     })
+
+//   //     if (response.data.success) {
+//   //       dispatch(setToken(response.data.token))
+//   //       await api.get(`${baseUrl}/users/session`)
+//   //       navigate(location.state?.path || '/', { replace: true })
+//   //     } else {
+//   //       setShowModal(true)
+//   //     }
+//   //   } catch (err) {
+//   //     console.log(err)
+//   //     setShowModal(true)
+//   //   } finally {
+//   //     setLoading(false)
+//   //   }
+//   // }
+//   const submitHandler = async (event: React.FormEvent) => {
+//     event.preventDefault()
+//     if (emailRef.current && passwordRef.current) {
+//       const username = emailRef.current.value
+//       const password = passwordRef.current.value
+//       try {
+//         // await login({ username, password }).unwrap()
+//         const result = await login({ username, password }).unwrap()
+//         console.log('Login success:', result)
+//         // Обработка успешного входа
+//         // if (result.ok) {
+//         //   navigate('/')
+//         // } else {
+//         //   setShowModal(true)
+//         // }
+//       } catch (error) {
+//         console.error('Login failed:', error)
+//         setShowModal(true)
+//       }
+//     }
+//   }
+
+//   return (
+//     <>
+//       <div className="ms-3">
+//         <Row className="d-none d-md-flex top-0 mt-3 me-3">
+//           <Col xs="auto">
+//             <h1
+//               style={{
+//                 fontSize: '26px',
+//                 marginTop: '10px',
+//                 marginRight: '15px'
+//               }}
+//             >
+//               Sign In{' '}
+//             </h1>
+//           </Col>
+//         </Row>
+//       </div>
+
+//       <div
+//         className="w-100"
+//         style={{ maxWidth: '280px', margin: '100px auto', position: 'relative' }}
+//       >
+//         <Form onSubmit={submitHandler}>
+//           <Form.Group controlId="formEmail" className="mb-3">
+//             <Form.Control type="email" placeholder="Email" ref={emailRef} required />
+//           </Form.Group>
+
+//           <Form.Group controlId="formPassword" className="mb-3">
+//             <Form.Control type="password" placeholder="Password" ref={passwordRef} required />
+//           </Form.Group>
+
+//           <Button variant="primary" type="submit" disabled={isLoading} className="w-100">
+//             {isLoading ? <Spinner animation="border" size="sm" /> : 'Sign In'}
+//           </Button>
+//         </Form>
+
+//         {showModal && <ErrorModal show={showModal} onHide={() => setShowModal(false)} />}
+//       </div>
+//     </>
+//   )
+// }
+
+// export default SignIn
 
 //---------------last-----------------
 
